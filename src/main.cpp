@@ -116,10 +116,6 @@ class $modify(PFBase, GJBaseGameLayer) {
         if (pf::shadow().simming) return;
         GJBaseGameLayer::updateDualGround(p, mode, instant, dur);
     }
-    void updateCameraMode(EffectGameObject* o, bool dual) {
-        if (pf::shadow().simming) return;
-        GJBaseGameLayer::updateCameraMode(o, dual);
-    }
     void playerTouchedTrigger(PlayerObject* p, EffectGameObject* o) {
         if (pf::shadow().simming) return;
         GJBaseGameLayer::playerTouchedTrigger(p, o);
