@@ -1,0 +1,56 @@
+{
+  "geode": "4.6.0",
+  "gd": { "win": "2.2081", "android": "2.2081" },
+  "id": "yourname.pathfinder",
+  "name": "AI Pathfinder",
+  "version": "v0.3.0",
+  "developer": "yourname",
+  "description": "A predictive auto-dodge assistant. Looks ahead with shadow players and plays the surviving input pattern, tick-exact.",
+  "repository": "https://github.com/yourname/pathfinder",
+  "settings": {
+    "sec-core": { "type": "title", "name": "Core" },
+    "enabled": { "type": "bool", "name": "Enable Pathfinder", "default": true },
+    "practice-only": {
+      "type": "bool", "name": "Practice Mode Only", "default": false,
+      "description": "Only assist while practice mode is active."
+    },
+    "safe-mode": {
+      "type": "bool", "name": "Safe Mode", "default": true,
+      "description": "Marks assisted runs as test runs so nothing is saved or submitted."
+    },
+
+    "sec-search": { "type": "title", "name": "Search" },
+    "horizon": {
+      "type": "int", "name": "Look-ahead (ticks @ 240 TPS)", "default": 180,
+      "min": 40, "max": 720, "control": { "slider": true },
+      "description": "How far into the future a plan must stay alive."
+    },
+    "segment": {
+      "type": "int", "name": "Decision Step (ticks)", "default": 3,
+      "min": 1, "max": 8, "control": { "slider": true },
+      "description": "Input granularity after the first tick. The first decision is always 1 tick, which is what makes frame-perfect inputs possible."
+    },
+    "budget-ms": {
+      "type": "float", "name": "Time Budget (ms per search)", "default": 2.0,
+      "min": 0.25, "max": 25.0, "control": { "slider": true },
+      "description": "Max CPU time per search. Raise for tight sections, lower if the game stutters."
+    },
+    "replan-ticks": {
+      "type": "int", "name": "Forced Re-plan Interval (ticks)", "default": 120,
+      "min": 20, "max": 600, "control": { "slider": true },
+      "description": "Plans are reused between searches. This forces a fresh search regardless, to catch things the shadow cannot see (triggers, moving objects)."
+    },
+    "divergence": {
+      "type": "float", "name": "Divergence Tolerance (units)", "default": 1.5,
+      "min": 0.1, "max": 10.0, "control": { "slider": true },
+      "description": "If the real player drifts further than this from the prediction, the plan is thrown away and re-searched."
+    },
+
+    "sec-visual": { "type": "title", "name": "Visuals" },
+    "show-path": { "type": "bool", "name": "Show Predicted Path", "default": true,
+      "description": "Draws the plan like Show Trajectory. Green = holding, white = released." },
+    "show-status": { "type": "bool", "name": "Show Status Label", "default": true,
+      "description": "Small label: Clear / Dodging / No Path, plus search cost." },
+    "verbose": { "type": "bool", "name": "Verbose Logging", "default": false }
+  }
+}
